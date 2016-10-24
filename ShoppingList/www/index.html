@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="ShoppingList">
+
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Shopping List Check Off</h1>
+  </ion-header-bar>
+  <ion-content>
+
+    <div class="container" ng-app="ShoppingList">
+      <h1 class="title">Shopping List</h1>
+
+      <!-- ToBuy List -->
+      <div class="error-container" ng-controller="ErrorController as errorMessage">
+        <h2 class="error-message" ng-model="errorMessage.message">{{message}}</h2>
+      </div>
+
+      <div ng-controller="ToBuyController as toBuy">
+        <h2 class="title">To Buy:</h2>
+        <div class="input-group">
+          <input ng-model="$index" class="form-control">
+          <span class="input-group-btn">
+			<button class="btn btn-success" ng-click="toBuy.addItemToBuy($index)"><i class="ion-plus-circled"></i></button>
+		</span>
+        </div>
+        <div class="list">
+          <div class='item item-icon-right' ng-repeat="item in toBuy.items">{{item}}
+            <i class="icon ion-checkmark-circled" ng-click="toBuy.moveItem($index)"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Already Bought List -->
+      <div ng-controller="BoughtController as alreadyBought">
+        <h2 class="title" ng-if="alreadyBought.items.length !== 0">Already Bought:</h2>
+        <div class="error-message" ng-if="alreadyBought.items.length === 0">
+          Buy something!
+        </div>
+
+        <div class="list">
+          <div class='item item-icon-right' ng-repeat="item in alreadyBought.items">{{item}}
+            <i class="icon ion-close-circled" ng-click="alreadyBought.removeItem($index)"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </ion-content>
+  </body>
+</html>
