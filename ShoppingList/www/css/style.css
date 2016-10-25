@@ -1,8 +1,7 @@
-/* Empty. Add your own CSS if you like */
 body {
   background-image: url('https://s-media-cache-ak0.pinimg.com/originals/bf/2f/9b/bf2f9b32ef19a990c957e524a5cfa472.jpg');
   background-size: cover;
-  height:100vh;
+  height: 100vh;
 }
 
 .emptyMessage {
@@ -23,10 +22,11 @@ body {
 .icon {
   cursor: pointer;
 }
+
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .buy-item {
@@ -36,3 +36,9 @@ body {
 .error-message {
   color: red;
 }
+
+.input-quantity {
+  border: 1px solid;
+}
+
+
